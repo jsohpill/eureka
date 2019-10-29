@@ -34,6 +34,8 @@ import com.netflix.eureka.aws.AwsBindingStrategy;
  * otherwise specified.
  * </p>
  *
+ * Eureka-Server 配置接口。
+ *
  * @author Karthik Ranganathan
  *
  */
@@ -122,6 +124,8 @@ public interface EurekaServerConfig {
      * <em>The changes are effective at runtime.</em>
      * </p>
      *
+     * 开启自我保护模式比例，超过该比例后开启自我保护模式。
+     *
      * @return value between 0 and 1 indicating the percentage. For example,
      *         <code>85%</code> will be specified as <code>0.85</code>.
      */
@@ -130,6 +134,8 @@ public interface EurekaServerConfig {
     /**
      * The interval with which the threshold as specified in
      * {@link #getRenewalPercentThreshold()} needs to be updated.
+     *
+     * 自我保护模式比例更新定时任务执行频率，单位：毫秒。
      *
      * @return time in milliseconds indicating the interval.
      */
@@ -153,6 +159,8 @@ public interface EurekaServerConfig {
      * <p>
      * <em>The changes are effective at runtime.</em>
      * </p>
+     *
+     * Eureka-Server 集群节点更新频率，单位：毫秒。
      *
      * @return timer in milliseconds indicating the interval.
      */
@@ -195,6 +203,8 @@ public interface EurekaServerConfig {
      * When the instance registry starts up empty, it builds over time when the
      * clients start to send heartbeats and the server requests the clients for
      * registration information.
+     *
+     * Eureka-Server 启动时，从远程 Eureka-Server 读取不到注册信息时，多长时间不允许 Eureka-Client 访问。
      *
      * @return time in milliseconds.
      */
@@ -260,6 +270,8 @@ public interface EurekaServerConfig {
     /**
      * Get the time interval with which the task that expires instances should
      * wake up and run.
+     *
+     * 租约过期定时任务执行频率，单位：毫秒。
      *
      * @return time in milliseconds.
      */
@@ -401,6 +413,8 @@ public interface EurekaServerConfig {
      * this value can vary.
      * </p>
      *
+     * 待执行同步应用实例信息事件缓冲最大数量。
+     *
      * @return the maximum number of replication events that can be allowed to
      *         back up.
      */
@@ -422,6 +436,8 @@ public interface EurekaServerConfig {
 
     /**
      * Get the maximum number of threads to be used for replication.
+     *
+     * 同步应用实例信息最大线程数。
      *
      * @return maximum number of threads to be used for replication.
      */
@@ -445,6 +461,8 @@ public interface EurekaServerConfig {
     /**
      * Get the time in milliseconds to try to replicate before dropping
      * replication events.
+     *
+     * 执行单个同步应用实例信息状态任务最大时间。
      *
      * @return time in milliseconds
      */
@@ -602,12 +620,17 @@ public interface EurekaServerConfig {
 
     /**
      * Indicates whether the eureka server should log/metric clientAuthHeaders
+     *
+     * 打印访问的客户端名和版本号，配合 Netflix Servo 实现监控信息采集。
+     *
      * @return {@code true} if the clientAuthHeaders should be logged and/or emitted as metrics
      */
     boolean shouldLogIdentityHeaders();
 
     /**
      * Indicates whether the rate limiter should be enabled or disabled.
+     *
+     * 请求限流是否开启。
      */
     boolean isRateLimiterEnabled();
 
@@ -624,12 +647,18 @@ public interface EurekaServerConfig {
 
     /**
      * Rate limiter, token bucket algorithm property. See also {@link #getRateLimiterRegistryFetchAverageRate()}
+     *
+     * 速率限制的 burst size ，使用令牌桶算法。
+     *
      * and {@link #getRateLimiterFullFetchAverageRate()}.
      */
     int getRateLimiterBurstSize();
 
     /**
      * Rate limiter, token bucket algorithm property. Specifies the average enforced request rate.
+     *
+     * 增量拉取注册信息的速率限制。
+     *
      * See also {@link #getRateLimiterBurstSize()}.
      */
     int getRateLimiterRegistryFetchAverageRate();

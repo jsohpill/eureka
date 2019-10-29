@@ -23,6 +23,8 @@ import org.slf4j.LoggerFactory;
  * This provider is @Singleton scope as it provides the InstanceInfo for both DiscoveryClient
  * and ApplicationInfoManager, and need to provide the same InstanceInfo to both.
  *
+ * 基于 EurekaInstanceConfig 创建 InstanceInfo 的工厂。
+ *
  * @author elandau
  *
  */
@@ -46,6 +48,7 @@ public class EurekaConfigBasedInstanceInfoProvider implements Provider<InstanceI
     public synchronized InstanceInfo get() {
         if (instanceInfo == null) {
             // Build the lease information to be passed to the server based on config
+            // 构建租约信息。
             LeaseInfo.Builder leaseInfoBuilder = LeaseInfo.Builder.newBuilder()
                     .setRenewalIntervalInSecs(config.getLeaseRenewalIntervalInSeconds())
                     .setDurationInSecs(config.getLeaseExpirationDurationInSeconds());
@@ -55,9 +58,11 @@ public class EurekaConfigBasedInstanceInfoProvider implements Provider<InstanceI
             }
 
             // Builder the instance information to be registered with eureka server
+            // 构建实例信息。
             InstanceInfo.Builder builder = InstanceInfo.Builder.newBuilder(vipAddressResolver);
 
             // set the appropriate id for the InstanceInfo, falling back to datacenter Id if applicable, else hostname
+            // 为实例信息设置合适的id。
             String instanceId = config.getInstanceId();
             if (instanceId == null || instanceId.isEmpty()) {
                 DataCenterInfo dataCenterInfo = config.getDataCenterInfo();
@@ -102,6 +107,7 @@ public class EurekaConfigBasedInstanceInfoProvider implements Provider<InstanceI
 
 
             // Start off with the STARTING state to avoid traffic
+            // 从STARTING状态开始以避免交通。
             if (!config.isInstanceEnabledOnit()) {
                 InstanceStatus initialStatus = InstanceStatus.STARTING;
                 LOG.info("Setting initial instance status as: {}", initialStatus);
@@ -113,6 +119,7 @@ public class EurekaConfigBasedInstanceInfoProvider implements Provider<InstanceI
             }
 
             // Add any user-specific metadata information
+            // 添加用户指定的元信息。
             for (Map.Entry<String, String> mapEntry : config.getMetadataMap().entrySet()) {
                 String key = mapEntry.getKey();
                 String value = mapEntry.getValue();

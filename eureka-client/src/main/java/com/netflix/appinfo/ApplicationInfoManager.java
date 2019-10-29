@@ -55,12 +55,16 @@ public class ApplicationInfoManager {
         }
     };
 
+    // 单例
     private static ApplicationInfoManager instance = new ApplicationInfoManager(null, null, null);
 
     protected final Map<String, StatusChangeListener> listeners;
     private final InstanceStatusMapper instanceStatusMapper;
 
+    // 实例信息。
     private InstanceInfo instanceInfo;
+
+    // 实例配置信息。
     private EurekaInstanceConfig config;
 
     public static class OptionalArgs {

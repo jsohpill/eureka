@@ -22,6 +22,8 @@ import com.netflix.appinfo.InstanceInfo;
 /**
  * Lookup service for finding active instances.
  *
+ * 寻找活跃实例的查找服务。
+ *
  * @author Karthik Ranganathan, Greg Kim.
  * @param <T> for backward compatibility
 

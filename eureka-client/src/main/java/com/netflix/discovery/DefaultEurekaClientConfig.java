@@ -53,6 +53,8 @@ import static com.netflix.discovery.PropertyBasedClientConfigConstants.*;
  * to <em>eureka-client.properties</em>.
  * </p>
  *
+ * 基于配置文件的 Eureka-Client 配置实现类。
+ *
  * @author Karthik Ranganathan
  *
  */

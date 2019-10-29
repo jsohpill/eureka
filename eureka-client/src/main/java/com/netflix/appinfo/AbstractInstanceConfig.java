@@ -30,6 +30,8 @@ import org.slf4j.LoggerFactory;
  * started quickly.The users have to override only a few methods to register
  * their instance with eureka server.
  *
+ * EurekaInstanceConfig通用的配置。
+ *
  * @author Karthik Ranganathan
  *
  */

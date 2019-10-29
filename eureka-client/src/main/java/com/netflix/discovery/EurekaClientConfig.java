@@ -278,6 +278,8 @@ public interface EurekaClientConfig {
      * you just want do discover other instances.
      * </p>
      *
+     * 是否向 Eureka-Server 注册自身服务。
+     *
      * @return true if this instance should register with eureka, false
      *         otherwise
      */
@@ -451,6 +453,8 @@ public interface EurekaClientConfig {
     /**
      * Indicates whether this client should fetch eureka registry information from eureka server.
      *
+     * 是否从 Eureka-Server 拉取注册信息。
+     *
      * @return {@code true} if registry information has to be fetched, {@code false} otherwise.
      */
     boolean shouldFetchRegistry();
@@ -467,6 +471,8 @@ public interface EurekaClientConfig {
     /**
      * The thread pool size for the heartbeatExecutor to initialise with
      *
+     * 心跳执行线程池大小。
+     *
      * @return the heartbeatExecutor thread pool size
      */
     int getHeartbeatExecutorThreadPoolSize();
@@ -475,6 +481,8 @@ public interface EurekaClientConfig {
      * Heartbeat executor exponential back off related property.
      * It is a maximum multiplier value for retry delay, in case where a sequence of timeouts
      * occurred.
+     *
+     * 心跳执行超时后的延迟重试的时间。
      *
      * @return maximum multiplier value for retry delay
      */

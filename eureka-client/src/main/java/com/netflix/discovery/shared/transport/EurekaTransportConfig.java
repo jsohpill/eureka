@@ -8,6 +8,7 @@ package com.netflix.discovery.shared.transport;
 public interface EurekaTransportConfig {
 
     /**
+     * EurekaHttpClient 会话周期性重连时间，单位：秒。
      * @return the reconnect inverval to use for sessioned clients
      */
     int getSessionedClientReconnectIntervalSeconds();

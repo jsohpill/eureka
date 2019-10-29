@@ -49,6 +49,8 @@ import org.slf4j.LoggerFactory;
  * serialized as specified by the <code>@Serializer</code>.
  * </p>
  *
+ * 应用实例信息。
+ *
  * @author Karthik Ranganathan, Greg Kim
  */
 @ProvidedBy(EurekaConfigBasedInstanceInfoProvider.class)
@@ -1226,6 +1228,8 @@ public class InstanceInfo {
      * <p>
      * Sets the dirty flag so that the instance information can be carried to
      * the discovery server on the next heartbeat.
+     *
+     * 设置改变标记。
      */
     @Deprecated
     public synchronized void setIsDirty(boolean isDirty) {

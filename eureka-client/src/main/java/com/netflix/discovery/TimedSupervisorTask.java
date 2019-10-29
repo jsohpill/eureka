@@ -20,6 +20,9 @@ import org.slf4j.LoggerFactory;
  * A supervisor task that schedules subtasks while enforce a timeout.
  * Wrapped subtasks must be thread safe.
  *
+ * 在执行超时时调度子任务的主管任务。
+ * 包装的子任务必须是线程安全的。
+ *
  * @author David Qiang Liu
  */
 public class TimedSupervisorTask extends TimerTask {

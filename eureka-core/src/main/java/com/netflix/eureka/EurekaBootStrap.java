@@ -61,6 +61,8 @@ import org.slf4j.LoggerFactory;
  * server binds it to the elastic ip as specified.
  * </p>
  *
+ * Eureka-Server 启动入口。
+ *
  * @author Karthik Ranganathan, Greg Kim, David Liu
  *
  */
@@ -110,7 +112,10 @@ public class EurekaBootStrap implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent event) {
         try {
+            // 初始化 Eureka-Server 配置环境。
             initEurekaEnvironment();
+
+            // 初始化 Eureka-Server 上下文。
             initEurekaServerContext();
 
             ServletContext sc = event.getServletContext();
@@ -155,6 +160,7 @@ public class EurekaBootStrap implements ServletContextListener {
         logger.info(eurekaServerConfig.getJsonCodecName());
         ServerCodecs serverCodecs = new DefaultServerCodecs(eurekaServerConfig);
 
+        // 创建 Eureka-Client。
         ApplicationInfoManager applicationInfoManager = null;
 
         if (eurekaClient == null) {

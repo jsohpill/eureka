@@ -28,6 +28,8 @@ import org.slf4j.LoggerFactory;
 /**
  * Helper class to manage lifecycle of a collection of {@link PeerEurekaNode}s.
  *
+ * Eureka-Server 集群节点集合。
+ *
  * @author Tomasz Bak
  */
 @Singleton
@@ -156,8 +158,11 @@ public class PeerEurekaNodes {
             return;
         }
 
+        // 计算删除的节点
         Set<String> toShutdown = new HashSet<>(peerEurekaNodeUrls);
         toShutdown.removeAll(newPeerUrls);
+
+        // 计算新增的节点
         Set<String> toAdd = new HashSet<>(newPeerUrls);
         toAdd.removeAll(peerEurekaNodeUrls);
 

@@ -188,10 +188,13 @@ public abstract class AbstractInstanceRegistry implements InstanceRegistry {
     /**
      * Registers a new instance with a given duration.
      *
+     * 注册实例信息。
+     *
      * @see com.netflix.eureka.lease.LeaseManager#register(java.lang.Object, int, boolean)
      */
     public void register(InstanceInfo registrant, int leaseDuration, boolean isReplication) {
         try {
+            // 获取读锁
             read.lock();
             Map<String, Lease<InstanceInfo>> gMap = registry.get(registrant.getAppName());
             REGISTER.increment(isReplication);

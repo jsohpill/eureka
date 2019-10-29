@@ -116,6 +116,7 @@ class InstanceInfoReplicator implements Runnable {
         try {
             discoveryClient.refreshInstanceInfo();
 
+            // 只有instanceInfo信息改变时，才重新注册。
             Long dirtyTimestamp = instanceInfo.isDirtyWithTime();
             if (dirtyTimestamp != null) {
                 discoveryClient.register();
